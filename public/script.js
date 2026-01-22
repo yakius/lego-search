@@ -1,8 +1,8 @@
 // ==================== КОНФИГУРАЦИЯ ====================
 const CONFIG = {
     // ВАЖНО: Замените на свои ключи из Supabase!
-    SUPABASE_URL: 'https://tzasx1oyqntvxikdvlmn.supabase.co',
-    SUPABASE_KEY: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InR6YXN4MW95cW50dnhpa2R2bG1uIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MDk1NTgwMDUsImV4cCI6MjAyNTEzNDAwNX0._KzXqTjrxYhBqHkr04sA8UENgWt0QLINPrt3p8mhRjo',
+    SUPABASE_URL: 'https://tzasxloyqntvxikdvlmn.supabase.co',
+    SUPABASE_KEY: 'sb_publishable_tARwThus9EuqaNCG5kuFyw_sxd8G9zo',
     
     // Настройки API
     API_BASE_URL: 'https://brickmind-ai.vercel.app/api',
