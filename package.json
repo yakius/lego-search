@@ -1,0 +1,18 @@
+{
+  "name": "brick-mind-ai",
+  "version": "1.0.0",
+  "description": "AI-powered LEGO set search and comparison tool",
+  "main": "public/index.html",
+  "scripts": {
+    "dev": "serve public",
+    "build": "echo 'No build step required'",
+    "start": "serve public",
+    "deploy": "vercel --prod"
+  },
+  "keywords": ["lego", "ai", "search", "comparison", "ecommerce"],
+  "author": "BrickMind AI",
+  "license": "MIT",
+  "devDependencies": {
+    "serve": "^14.0.0"
+  }
+}
