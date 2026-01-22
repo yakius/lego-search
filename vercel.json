@@ -21,10 +21,6 @@
     {
       "source": "/terms",
       "destination": "/terms.html"
-    },
-    {
-      "source": "/(.*)",
-      "destination": "/$1"
     }
   ],
   "headers": [
@@ -42,15 +38,11 @@
         {
           "key": "Referrer-Policy",
           "value": "strict-origin-when-cross-origin"
-        },
-        {
-          "key": "Permissions-Policy",
-          "value": "camera=(), microphone=(), geolocation=()"
         }
       ]
     },
     {
-      "source": "/(.*\\.(css|js))",
+      "source": "/(.*\\.css$|.*\\.js$)",
       "headers": [
         {
           "key": "Cache-Control",
@@ -59,7 +51,7 @@
       ]
     },
     {
-      "source": "/(.*\\.(html|json|ico))",
+      "source": "/(.*\\.html$|.*\\.json$|.*\\.ico$)",
       "headers": [
         {
           "key": "Cache-Control",
