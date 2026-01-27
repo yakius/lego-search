@@ -1799,3 +1799,414 @@ input:checked + .slider:before {
 .p-2 { padding: var(--space-md); }
 .p-3 { padding: var(--space-lg); }
 .p-4 { padding: var(--space-xl); }
+
+
+/* ==================== ФИЛЬТРЫ ==================== */
+.filters-bar {
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-lg);
+    padding: var(--space-lg);
+    margin-bottom: var(--space-xl);
+    box-shadow: var(--shadow-sm);
+}
+
+.filters-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: var(--space-lg);
+    align-items: end;
+}
+
+.filter-group {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+}
+
+.filter-group label {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--text-secondary);
+}
+
+.price-range {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+}
+
+.price-range input {
+    flex: 1;
+    padding: 8px 12px;
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+    background: var(--bg-card);
+    color: var(--text-primary);
+    font-size: 0.875rem;
+}
+
+.price-range span {
+    color: var(--text-tertiary);
+}
+
+/* ==================== ПАГИНАЦИЯ ==================== */
+.pagination {
+    margin-top: var(--space-xl);
+    padding: var(--space-lg) 0;
+}
+
+.pagination-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: var(--space-sm);
+}
+
+.pagination-btn {
+    width: 40px;
+    height: 40px;
+    border-radius: var(--radius-md);
+    border: 1px solid var(--border-color);
+    background: var(--bg-card);
+    color: var(--text-secondary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all var(--transition-fast);
+}
+
+.pagination-btn:hover:not(.disabled):not(.active) {
+    border-color: var(--primary);
+    color: var(--primary);
+}
+
+.pagination-btn.active {
+    background: var(--gradient-primary);
+    color: white;
+    border-color: transparent;
+}
+
+.pagination-btn.disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+/* ==================== ТОП НАБОРЫ ==================== */
+.top-set-item {
+    display: flex;
+    align-items: center;
+    gap: var(--space-md);
+    padding: var(--space-md);
+    background: var(--bg-tertiary);
+    border-radius: var(--radius-md);
+    margin-bottom: var(--space-sm);
+}
+
+.top-set-rank {
+    width: 28px;
+    height: 28px;
+    border-radius: var(--radius-full);
+    background: var(--gradient-primary);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.75rem;
+    font-weight: 600;
+}
+
+.top-set-info {
+    flex: 1;
+}
+
+.top-set-info strong {
+    display: block;
+    font-size: 0.875rem;
+    margin-bottom: 2px;
+}
+
+.top-set-info small {
+    color: var(--text-tertiary);
+    font-size: 0.75rem;
+}
+
+.top-set-rating {
+    color: var(--warning);
+    font-weight: 600;
+}
+
+/* ==================== МОДАЛЬНОЕ ОКНО ==================== */
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    padding: var(--space-md);
+    animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.modal-content {
+    background: var(--bg-card);
+    border-radius: var(--radius-lg);
+    max-width: 90%;
+    max-height: 90vh;
+    overflow-y: auto;
+    animation: slideUp 0.3s ease;
+}
+
+@keyframes slideUp {
+    from { transform: translateY(20px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+/* ==================== АДАПТИВНОСТЬ ==================== */
+@media (max-width: 768px) {
+    .filters-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .price-range {
+        flex-wrap: wrap;
+    }
+    
+    .pagination-container {
+        flex-wrap: wrap;
+    }
+    
+    .hero-stats {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .quick-tags {
+        flex-wrap: wrap;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-stats {
+        grid-template-columns: 1fr;
+    }
+    
+    .search-container {
+        flex-direction: column;
+    }
+    
+    .product-actions {
+        flex-direction: column;
+    }
+}
+
+/* ==================== АВТОДОПОЛНЕНИЕ ==================== */
+.search-box {
+    position: relative;
+}
+
+.autocomplete-container {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-lg);
+    margin-top: 8px;
+    padding: var(--space-md);
+    box-shadow: var(--shadow-xl);
+    z-index: 1000;
+    display: none;
+    max-height: 400px;
+    overflow-y: auto;
+}
+
+.autocomplete-container.active {
+    display: block;
+    animation: fadeIn 0.2s ease;
+}
+
+.autocomplete-section {
+    margin-bottom: var(--space-lg);
+}
+
+.autocomplete-section:last-child {
+    margin-bottom: 0;
+}
+
+.autocomplete-title {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--text-tertiary);
+    margin-bottom: var(--space-sm);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.autocomplete-item {
+    padding: var(--space-sm) var(--space-md);
+    border-radius: var(--radius-md);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+    transition: all var(--transition-fast);
+    margin-bottom: 2px;
+}
+
+.autocomplete-item:hover {
+    background: var(--bg-tertiary);
+    color: var(--primary);
+}
+
+.autocomplete-item i {
+    color: var(--text-tertiary);
+    width: 16px;
+    text-align: center;
+}
+
+.autocomplete-tip {
+    padding: var(--space-sm) var(--space-md);
+    font-size: 0.875rem;
+    color: var(--text-tertiary);
+    border-left: 2px solid var(--primary);
+    margin-bottom: 4px;
+    background: var(--bg-tertiary);
+    border-radius: var(--radius-sm);
+}
+
+/* ==================== ВИНТАЖНЫЕ НАБОРЫ ==================== */
+.product-card.vintage {
+    border-color: var(--warning);
+    position: relative;
+}
+
+.product-card.vintage::before {
+    content: '🎯 Винтаж';
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background: var(--warning);
+    color: white;
+    padding: 4px 8px;
+    border-radius: var(--radius-full);
+    font-size: 0.7rem;
+    font-weight: 600;
+    z-index: 2;
+}
+
+.product-card.used {
+    opacity: 0.9;
+    border-style: dashed;
+}
+
+.product-card.used::before {
+    content: '🔄 Б/У';
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background: var(--text-tertiary);
+    color: white;
+    padding: 4px 8px;
+    border-radius: var(--radius-full);
+    font-size: 0.7rem;
+    font-weight: 600;
+    z-index: 2;
+}
+
+/* ==================== БЕЙДЖИ МАРКЕТПЛЕЙСОВ ==================== */
+.marketplace-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 2px 8px;
+    border-radius: var(--radius-full);
+    font-size: 0.7rem;
+    font-weight: 600;
+    margin-left: 8px;
+}
+
+.marketplace-avito {
+    background: #66CC33;
+    color: white;
+}
+
+.marketplace-wb {
+    background: #FF3366;
+    color: white;
+}
+
+.marketplace-ozon {
+    background: #005BFF;
+    color: white;
+}
+
+.marketplace-yandex {
+    background: #FC3F1D;
+    color: white;
+}
+
+/* ==================== БЫСТРЫЕ ФИЛЬТРЫ ==================== */
+.quick-filters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-sm);
+    margin: var(--space-md) 0;
+}
+
+.quick-filter-btn {
+    padding: 6px 12px;
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-full);
+    background: var(--bg-tertiary);
+    font-size: 0.75rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    transition: all var(--transition-fast);
+}
+
+.quick-filter-btn.active {
+    background: var(--primary);
+    color: white;
+    border-color: var(--primary);
+}
+
+.quick-filter-btn:hover {
+    border-color: var(--primary);
+}
+
+/* ==================== ПОИСК ПО СОСТОЯНИЮ ==================== */
+.condition-filter {
+    display: flex;
+    gap: var(--space-sm);
+    margin-top: var(--space-md);
+}
+
+.condition-badge {
+    padding: 4px 8px;
+    border-radius: var(--radius-sm);
+    font-size: 0.7rem;
+    font-weight: 600;
+}
+
+.condition-new {
+    background: rgba(16, 185, 129, 0.1);
+    color: var(--success);
+}
+
+.condition-used {
+    background: rgba(148, 163, 184, 0.1);
+    color: var(--text-tertiary);
+}
