@@ -1,18 +1,19 @@
 {
-  "name": "brick-mind-ai",
-  "version": "1.0.0",
-  "description": "AI-powered LEGO set search and comparison tool",
-  "main": "public/index.html",
+  "name": "brickmind-ai",
+  "version": "4.0.0",
+  "description": "Умный поисковик LEGO наборов",
   "scripts": {
-    "dev": "serve public",
-    "build": "echo 'No build step required'",
-    "start": "serve public",
-    "deploy": "vercel --prod"
+    "dev": "npx serve .",
+    "build": "echo 'Static site, no build required'",
+    "start": "npx serve . -p 3000"
   },
-  "keywords": ["lego", "ai", "search", "comparison", "ecommerce"],
-  "author": "BrickMind AI",
+  "keywords": ["lego", "search", "ai", "russian", "constructor"],
+  "author": "BrickMind Team",
   "license": "MIT",
   "devDependencies": {
     "serve": "^14.0.0"
+  },
+  "engines": {
+    "node": ">=18"
   }
 }
