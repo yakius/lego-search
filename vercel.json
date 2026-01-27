@@ -1,131 +1,32 @@
 {
   "version": 2,
-  "name": "brickmind-ai",
-  "alias": [
-    "brickmind-ai",
-    "brickmind-lego",
-    "lego-search"
-  ],
-  "buildCommand": "npm run vercel-build",
-  "outputDirectory": ".",
-  "devCommand": "npm run dev",
-  "installCommand": "npm install",
-  "framework": null,
-  "regions": ["fra1"],
-  "public": true,
-  "github": {
-    "enabled": true,
-    "autoAlias": true,
-    "silent": true
-  },
-  "env": {
-    "NODE_ENV": "production"
-  },
   "builds": [
     {
-      "src": "**/*.html",
-      "use": "@vercel/static"
-    },
-    {
-      "src": "**/*.css",
-      "use": "@vercel/static"
-    },
-    {
-      "src": "**/*.js",
-      "use": "@vercel/static"
-    },
-    {
-      "src": "api/**/*.js",
-      "use": "@vercel/node"
+      "src": "package.json",
+      "use": "@vercel/static-build",
+      "config": {
+        "distDir": "public"
+      }
     }
   ],
-  "routes": [
+  "rewrites": [
     {
-      "src": "/api/(.*)",
-      "dest": "/api/$1",
-      "headers": {
-        "Access-Control-Allow-Origin": "*",
-        "Access-Control-Allow-Methods": "GET, POST, OPTIONS",
-        "Access-Control-Allow-Headers": "Content-Type, Authorization",
-        "Cache-Control": "no-cache, no-store, must-revalidate"
-      }
+      "source": "/",
+      "destination": "/index.html"
     },
     {
-      "src": "/",
-      "dest": "/index.html",
-      "headers": {
-        "Cache-Control": "public, max-age=3600, s-maxage=3600"
-      }
+      "source": "/privacy",
+      "destination": "/privacy.html"
     },
     {
-      "src": "/search",
-      "dest": "/index.html"
-    },
-    {
-      "src": "/compare",
-      "dest": "/index.html"
-    },
-    {
-      "src": "/tools",
-      "dest": "/index.html"
-    },
-    {
-      "src": "/privacy",
-      "dest": "/privacy.html"
-    },
-    {
-      "src": "/terms",
-      "dest": "/terms.html"
-    },
-    {
-      "src": "/style.css",
-      "dest": "/style.css",
-      "headers": {
-        "Cache-Control": "public, max-age=31536000, immutable"
-      }
-    },
-    {
-      "src": "/script.js",
-      "dest": "/script.js",
-      "headers": {
-        "Cache-Control": "public, max-age=31536000, immutable"
-      }
-    },
-    {
-      "src": "/favicon.ico",
-      "dest": "https://emojicdn.elk.sh/🧱?size=64"
-    },
-    {
-      "src": "/robots.txt",
-      "headers": {
-        "Content-Type": "text/plain"
-      },
-      "dest": "/api/robots"
-    },
-    {
-      "src": "/sitemap.xml",
-      "headers": {
-        "Content-Type": "application/xml"
-      },
-      "dest": "/api/sitemap"
-    },
-    {
-      "src": "/(.*)",
-      "status": 200,
-      "headers": {
-        "Content-Type": "text/html; charset=utf-8"
-      },
-      "dest": "/index.html"
+      "source": "/terms",
+      "destination": "/terms.html"
     }
   ],
   "headers": [
     {
       "source": "/(.*)",
       "headers": [
-        {
-          "key": "X-DNS-Prefetch-Control",
-          "value": "on"
-        },
         {
           "key": "X-Content-Type-Options",
           "value": "nosniff"
@@ -135,44 +36,30 @@
           "value": "DENY"
         },
         {
-          "key": "X-XSS-Protection",
-          "value": "1; mode=block"
-        },
-        {
           "key": "Referrer-Policy",
           "value": "strict-origin-when-cross-origin"
-        },
-        {
-          "key": "Permissions-Policy",
-          "value": "camera=(), microphone=(), geolocation=()"
-        },
-        {
-          "key": "Content-Security-Policy",
-          "value": "default-src 'self'; script-src 'self' 'unsafe-inline' https:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://brickmind-api.vercel.app;"
         }
       ]
     },
     {
-      "source": "/(.*\\.css|.*\\.js)",
+      "source": "/(.*\\.css$|.*\\.js$)",
       "headers": [
         {
           "key": "Cache-Control",
           "value": "public, max-age=31536000, immutable"
         }
       ]
-    }
-  ],
-  "crons": [
+    },
     {
-      "path": "/api/cron/update-prices",
-      "schedule": "0 */6 * * *"
+      "source": "/(.*\\.html$|.*\\.json$|.*\\.ico$)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=3600"
+        }
+      ]
     }
   ],
-  "git": {
-    "deploymentEnabled": {
-      "main": true,
-      "master": true,
-      "develop": false
-    }
-  }
+  "cleanUrls": true,
+  "trailingSlash": false
 }
