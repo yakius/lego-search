@@ -1,20 +1,26 @@
-{
-  "name": "BrickMind AI",
-  "short_name": "BrickMind",
-  "description": "Умный поиск и сравнение LEGO наборов",
-  "start_url": "/",
-  "display": "standalone",
-  "background_color": "#0f172a",
-  "theme_color": "#6366f1",
-  "orientation": "portrait-primary",
-  "icons": [
-    {
-      "src": "favicon.ico",
-      "sizes": "64x64 32x32 24x24 16x16",
-      "type": "image/x-icon"
-    }
-  ],
-  "categories": ["shopping", "productivity", "education"],
-  "lang": "ru",
-  "dir": "ltr"
+export default function handler(req, res) {
+  res.status(200).json({
+    "name": "BrickMind AI",
+    "short_name": "BrickMind",
+    "description": "Умный поиск LEGO наборов",
+    "start_url": "/",
+    "display": "standalone",
+    "background_color": "#0f172a",
+    "theme_color": "#6366f1",
+    "icons": [
+      {
+        "src": "https://emojicdn.elk.sh/🧱",
+        "sizes": "192x192",
+        "type": "image/png"
+      },
+      {
+        "src": "https://emojicdn.elk.sh/🧱",
+        "sizes": "512x512",
+        "type": "image/png"
+      }
+    ],
+    "categories": ["shopping", "entertainment"],
+    "lang": "ru-RU",
+    "orientation": "portrait"
+  });
 }
