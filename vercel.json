@@ -1,32 +1,128 @@
 {
   "version": 2,
+  "name": "brickmind-ai",
+  "alias": "brickmind-ai",
   "builds": [
     {
-      "src": "package.json",
-      "use": "@vercel/static-build",
-      "config": {
-        "distDir": "public"
-      }
+      "src": "index.html",
+      "use": "@vercel/static"
+    },
+    {
+      "src": "privacy.html",
+      "use": "@vercel/static"
+    },
+    {
+      "src": "terms.html",
+      "use": "@vercel/static"
+    },
+    {
+      "src": "style.css",
+      "use": "@vercel/static"
+    },
+    {
+      "src": "script.js",
+      "use": "@vercel/static"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/",
+      "dest": "/index.html"
+    },
+    {
+      "src": "/search",
+      "dest": "/index.html"
+    },
+    {
+      "src": "/compare",
+      "dest": "/index.html"
+    },
+    {
+      "src": "/tools",
+      "dest": "/index.html"
+    },
+    {
+      "src": "/privacy",
+      "dest": "/privacy.html"
+    },
+    {
+      "src": "/terms",
+      "dest": "/terms.html"
+    },
+    {
+      "src": "/style.css",
+      "dest": "/style.css"
+    },
+    {
+      "src": "/script.js",
+      "dest": "/script.js"
+    },
+    {
+      "src": "/favicon.ico",
+      "dest": "https://emojicdn.elk.sh/🧱"
+    },
+    {
+      "src": "/manifest.json",
+      "headers": {
+        "content-type": "application/json"
+      },
+      "dest": "/api/manifest"
+    },
+    {
+      "src": "/api/(.*)",
+      "status": 404,
+      "headers": {
+        "Content-Type": "application/json"
+      },
+      "dest": "/api/not-found"
+    },
+    {
+      "src": "/(.*)",
+      "status": 200,
+      "headers": {
+        "Content-Type": "text/html; charset=utf-8"
+      },
+      "dest": "/index.html"
     }
   ],
   "rewrites": [
     {
-      "source": "/",
-      "destination": "/index.html"
+      "source": "/api/search",
+      "destination": "https://brickmind-api.vercel.app/api/search"
     },
     {
-      "source": "/privacy",
-      "destination": "/privacy.html"
+      "source": "/api/set/:number",
+      "destination": "https://brickmind-api.vercel.app/api/set/:number"
     },
     {
-      "source": "/terms",
-      "destination": "/terms.html"
+      "source": "/api/compare/prices",
+      "destination": "https://brickmind-api.vercel.app/api/compare/prices"
+    },
+    {
+      "source": "/api/stats/trending",
+      "destination": "https://brickmind-api.vercel.app/api/stats/trending"
+    },
+    {
+      "source": "/api/categories",
+      "destination": "https://brickmind-api.vercel.app/api/categories"
+    },
+    {
+      "source": "/api/compare/sets",
+      "destination": "https://brickmind-api.vercel.app/api/compare/sets"
+    },
+    {
+      "source": "/api/health",
+      "destination": "https://brickmind-api.vercel.app/api/health"
     }
   ],
   "headers": [
     {
       "source": "/(.*)",
       "headers": [
+        {
+          "key": "X-DNS-Prefetch-Control",
+          "value": "on"
+        },
         {
           "key": "X-Content-Type-Options",
           "value": "nosniff"
@@ -36,13 +132,25 @@
           "value": "DENY"
         },
         {
+          "key": "X-XSS-Protection",
+          "value": "1; mode=block"
+        },
+        {
           "key": "Referrer-Policy",
           "value": "strict-origin-when-cross-origin"
+        },
+        {
+          "key": "Permissions-Policy",
+          "value": "camera=(), microphone=(), geolocation=()"
+        },
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=3600, must-revalidate"
         }
       ]
     },
     {
-      "source": "/(.*\\.css$|.*\\.js$)",
+      "source": "/(.*\\.css|.*\\.js)",
       "headers": [
         {
           "key": "Cache-Control",
@@ -51,15 +159,57 @@
       ]
     },
     {
-      "source": "/(.*\\.html$|.*\\.json$|.*\\.ico$)",
+      "source": "/(.*\\.html|.*\\.json|.*\\.ico)",
       "headers": [
         {
           "key": "Cache-Control",
           "value": "public, max-age=3600"
         }
       ]
+    },
+    {
+      "source": "/api/(.*)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "no-store, no-cache, must-revalidate, proxy-revalidate"
+        },
+        {
+          "key": "Content-Type",
+          "value": "application/json; charset=utf-8"
+        },
+        {
+          "key": "Access-Control-Allow-Origin",
+          "value": "*"
+        },
+        {
+          "key": "Access-Control-Allow-Methods",
+          "value": "GET, POST, OPTIONS"
+        },
+        {
+          "key": "Access-Control-Allow-Headers",
+          "value": "Content-Type, Authorization"
+        }
+      ]
     }
   ],
-  "cleanUrls": true,
-  "trailingSlash": false
+  "env": {
+    "NODE_ENV": "production"
+  },
+  "regions": ["fra1"],
+  "functions": {
+    "api/manifest.js": {
+      "memory": 128,
+      "maxDuration": 5
+    },
+    "api/not-found.js": {
+      "memory": 128,
+      "maxDuration": 5
+    }
+  },
+  "git": {
+    "deploymentEnabled": {
+      "main": true
+    }
+  }
 }
