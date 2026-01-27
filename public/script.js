@@ -1600,7 +1600,7 @@ class BrickMind {
     
     // Вспомогательные функции
     static showFeedback() {
-        Utils.info('Обратная связь', 'Напишите нам на email: feedback@brickmind.ai');
+        Utils.info('Обратная связь', 'Напишите нам в Telegram: @YakiEXE');
     }
     
     static updateLiveStats() {
