@@ -1,19 +1,39 @@
 {
   "name": "brickmind-ai",
   "version": "4.0.0",
-  "description": "Умный поисковик LEGO наборов",
+  "description": "Умный поисковик LEGO наборов с ИИ-поиском",
+  "main": "index.html",
   "scripts": {
-    "dev": "npx serve .",
-    "build": "echo 'Static site, no build required'",
-    "start": "npx serve . -p 3000"
+    "dev": "npx serve@latest . -p 3000",
+    "build": "echo 'No build step required for static site' && exit 0",
+    "start": "npx serve@latest . -s -p $PORT",
+    "vercel-build": "echo 'Building BrickMind AI...'",
+    "postinstall": "echo 'Post-install script for Vercel'"
   },
-  "keywords": ["lego", "search", "ai", "russian", "constructor"],
+  "keywords": [
+    "lego",
+    "search",
+    "ai",
+    "russian",
+    "constructor",
+    "price-comparison",
+    "vercel"
+  ],
   "author": "BrickMind Team",
   "license": "MIT",
-  "devDependencies": {
-    "serve": "^14.0.0"
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yourusername/brickmind-ai"
   },
+  "bugs": {
+    "url": "https://github.com/yourusername/brickmind-ai/issues"
+  },
+  "homepage": "https://brickmind-ai.vercel.app",
   "engines": {
     "node": ">=18"
-  }
+  },
+  "devDependencies": {
+    "serve": "^14.2.1"
+  },
+  "dependencies": {}
 }
